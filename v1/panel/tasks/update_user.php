@@ -4,7 +4,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "tasks";
+$dbname = "openedtasks";
 
 // Les données de la personne qui a appuyé sur le boutton "Prendre en charge"
 $usertaketask = $_SESSION['pseudo'];

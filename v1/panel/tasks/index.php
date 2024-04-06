@@ -12,7 +12,7 @@ if(!isset($_SESSION['pseudo'])){
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "tasks";
+$dbname = "openedtasks";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

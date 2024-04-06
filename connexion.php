@@ -28,7 +28,7 @@
                 {
                     // On créer la session et on redirige sur landing.php
                     $_SESSION['user'] = $data['token'];
-                    header('Location: config.php');
+                    header('Location: v1/panel/');
                     die();
                 }else{ header('Location: index.php?login_err=password'); die(); }
             

@@ -111,11 +111,11 @@
     <div class="modal">
         <h3>Connexion à votre espace<br>professionnel OpenedTasks</h1>
         <form action="connexion.php" method="post">
-            <label for="fname">Prénom:</label>
-            <input type="text" id="fname" name="prenom"><br><br>
+            <label for="prenom">Prénom:</label>
+            <input type="text" id="prenom" name="prenom"><br><br>
             
-            <label for="pwd">Mot de passe:</label>
-            <input type="password" id="pwd" name="password"><br><br>
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password"><br><br>
             <button type="submit">Envoyer</button>
         </form>
     </div>
