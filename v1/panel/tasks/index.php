@@ -43,10 +43,10 @@ $nbtask = $reqnb;
 <body>
 
 <nav class="nav">
+    <div class="logo">
+        <a href="#">PANEL</a>
+    </div>
         <div class="container">
-            <div class="logo">
-                <a href="#">PANEL</a>
-            </div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
                     <li><a href="#">My Account</a></li>
@@ -82,7 +82,7 @@ $nbtask = $reqnb;
 
 
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()" position="fixed" top="10px" left="10px">&#9776; </span>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()" position="fixed" top="10px" left="10px">&#9776; </span>
 
 <script>
 function openNav() {
