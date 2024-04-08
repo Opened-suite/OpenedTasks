@@ -6,7 +6,7 @@ $pseudo = $_SESSION['pseudo'];
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "tasks";
+$dbname = "openedtasks";
 
 
 $taskname = $_POST['taskname'];
@@ -14,6 +14,9 @@ $taskuserold = $_POST['taskuser'];
 echo $pseudo;
 if ($taskuserold == null){
     $taskuser = "not yet assigned";
+}
+else {
+    $taskuser = $taskuserold;
 }
 
 try {
