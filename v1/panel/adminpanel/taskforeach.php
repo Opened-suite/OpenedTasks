@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -9,7 +9,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->prepare("SELECT id, task_text, task_status, task_user FROM task_list");
+    $stmt = $conn->prepare("SELECT * FROM task_list");
     $stmt->execute();
 
     $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -19,18 +19,34 @@ try {
     echo "Erreur lors de la récupération des tâches : " . $e->getMessage();
 }
 foreach ($tasks as $task) {
-if ($task["task_status"] == "fait"){
+if ($task["task_status"] == "Terminé"){
     $taskstatus = "#ADD8E6";
 };
-if ($task["task_user"] == "en cours"){
+if ($task["task_status"] == "En cours"){
     $taskstatus = "#ADD8E6";
 }
-if ($task["task_status"] == "pas fait"){
+if ($task["task_status"] == "Pas fait"){
     $taskstatus = "#FFB74D";
 };
-if ($task["task_user"] == "not yet assigned"){
-    $taskstatus = "#FFB74D";
-};
+
+
+if ($task["percent"] <= 20){
+    
+    $taskcolor = "#EF5350";
+}
+if ($task["percent"] > 20 && $task["percent"] <= 50){
+    $taskcolor = "#FFB74D";
+}
+if ($task["percent"] > 50 && $task["percent"] <= 80){
+    $taskcolor = "#ED7F10";
+    
+}
+if ($task["percent"] > 80){
+    $taskcolor = "#00FF20";
+}
+if ($task["percent"] == 100){
+    $taskcolor = "#ADD8E6";
+}
 
 echo '
 
@@ -38,7 +54,7 @@ echo '
         <div class="project-box-wrapper">
           <div class="project-box" style="background-color: #fee4cb;">
             <div class="project-box-header">
-              <span>December 10, 2020</span>
+              <span>' . $task["date_created"] . '</span>
               <div class="more-wrapper">
                 <button class="project-btn-more">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
@@ -55,9 +71,9 @@ echo '
         <div class="box-progress-wrapper">
           <p class="box-progress-header">Progress</p>
           <div class="box-progress-bar">
-            <span class="box-progress" style="width: 60%; background-color: ' .  $taskstatus .'"></span>
+            <span class="box-progress" style="width: ' . $task["percent"] . '%; background-color: ' .  $taskcolor .'"></span>
           </div>
-          <p class="box-progress-percentage">60%</p>
+          <p class="box-progress-percentage">' . $task["percent"] . ' %</p>
         </div>
         <div class="project-box-footer">
           <div class="participants">
@@ -70,7 +86,7 @@ echo '
             </button>
           </div>
           <div class="days-left" style="color: #ff942e;">
-            2 Days Left
+            <p>Fin dans ' . $task["task_deadline"] . '</p>
           </div>
         </div>
       </div>

@@ -35,41 +35,7 @@ $heureActuelle = time();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  var modeSwitch = document.querySelector('.mode-switch');
 
-  modeSwitch.addEventListener('click', function () {                     document.documentElement.classList.toggle('dark');
-    modeSwitch.classList.toggle('active');
-  });
-  
-  var listView = document.querySelector('.list-view');
-  var gridView = document.querySelector('.grid-view');
-  var projectsList = document.querySelector('.project-boxes');
-  
-  listView.addEventListener('click', function () {
-    gridView.classList.remove('active');
-    listView.classList.add('active');
-    projectsList.classList.remove('jsGridView');
-    projectsList.classList.add('jsListView');
-  });
-  
-  gridView.addEventListener('click', function () {
-    gridView.classList.add('active');
-    listView.classList.remove('active');
-    projectsList.classList.remove('jsListView');
-    projectsList.classList.add('jsGridView');
-  });
-  
-  document.querySelector('.messages-btn').addEventListener('click', function () {
-    document.querySelector('.messages-section').classList.add('show');
-  });
-  
-  document.querySelector('.messages-close').addEventListener('click', function() {
-    document.querySelector('.messages-section').classList.remove('show');
-  });
-});
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
@@ -77,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </head>
 <body>
 
-<div id="popup1" class="overlay">
+<div id="popup1" class="overlay popup" >
 	<div class="popup">
 		<h2>Add A New Task</h2>
 		<a class="close" href="#">&times;</a>
@@ -85,20 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
       <form action="addtask.php" method="post">
         <p>If Task User is null, the task will be assigned to the user who took it</p>
 			  <p>Task Name: <input type="text" name="taskname"></p>
-        <p>Task User: <input list="Pseudos" type="text" id="choix_bieres"></p>
+        <p>Task User: <input type="text" name="taskuser"></p>
         <p>Send Task: <input type="submit" name="sendtask"></p>
       </form>
 		</div>
 	</div>
 </div>
     
-<datalist id="Pseudos">
-  <?php foreach($users as $user) 
-  echo '<option value="'. $user['pseudo'] . '">🚀 '. $user['email'].'</option>';
-  ?>
-  
-  
-</datalist>
+
     <div class="app-container">
   <div class="app-header">
     <div class="app-header-left">
@@ -208,7 +168,10 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
       </div>
       <div class="project-boxes jsGridView">
-<?php include 'taskforeach.php'; ?>
+<?php 
+require"taskforeach.php";
+
+?>
       </div>
 
 
@@ -254,8 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	 width: 300px;
 	 box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 	 position: relative;
-   display: none;
-   z-index: 9999;
+   
 }
  .light .popup {
 	 border-color: #aaa;
@@ -293,3 +255,4 @@ document.addEventListener('DOMContentLoaded', function () {
 	 margin: 0;
 }
  </style>
+  <script src="index.js" defer></script>
