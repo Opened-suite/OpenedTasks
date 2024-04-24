@@ -12,8 +12,9 @@ $dbname = "openedtasks";
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
   
-  $reqnb = $conn->query("SELECT COUNT(*) FROM task_list");
-  
+  $reqnb_query = $conn->query("SELECT COUNT(*) FROM task_list");
+  $reqnb_result = $reqnb_query->fetch(PDO::FETCH_ASSOC);
+  $reqnb = $reqnb_result['COUNT(*)'];
   
   $stmtusers = $conn->prepare("SELECT * FROM utilisateurs");
   $stmtusers->execute();
@@ -44,15 +45,16 @@ $heureActuelle = time();
 <style>
 
 .overlay {
-	 position: absolute;
-	 top: 0;
-	 bottom: 0;
-	 left: 0;
-	 right: 0;
-	 background: rgba(0, 0, 0, 0.5);
-	 transition: opacity 200ms;
-	 visibility: hidden;
-	 opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+	background: rgba(0, 0, 0, 0.5);
+	transition: opacity 200ms;
+	visibility: hidden;
+	opacity: 0;
 }
  .overlay.light {
 	 background: rgba(255, 255, 255, 0.5);
@@ -67,16 +69,21 @@ $heureActuelle = time();
 	 visibility: visible;
 	 opacity: 1;
 }
- .popup {
-	 margin: 75px auto;
-	 padding: 20px;
-	 background: #fff;
-	 border: 1px solid #666;
-	 width: 300px;
-	 box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-	 position: relative;
-   
+
+.popup {
+	/*margin: 75px auto;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #666;
+	width: 300px;
+	box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+	position: relative;
 }
+
  .light .popup {
 	 border-color: #aaa;
 	 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
@@ -86,7 +93,8 @@ $heureActuelle = time();
 	 color: #666;
 	 font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
 }
- .popup .close {
+
+.popup .close {
 	 position: absolute;
 	 width: 20px;
 	 height: 20px;
@@ -99,7 +107,8 @@ $heureActuelle = time();
 	 text-decoration: none;
 	 color: #666;
 }
- .popup .close:hover {
+
+.popup .close:hover {
 	 opacity: 1;
 }
  .popup .content {
@@ -116,7 +125,7 @@ $heureActuelle = time();
 </head>
 <body>
 
-<div id="popup1" class="overlay popup" >
+<div id="popup1" class="overlay" >
 	<div class="popup">
 		<h2>Add A New Task</h2>
 		<a class="close" href="#">&times;</a>
@@ -209,7 +218,7 @@ $heureActuelle = time();
       <div class="projects-section-line">
         <div class="projects-status">
           <div class="item-status">
-            <span class="status-number"><?= $reqnb?></span>
+            <span class="status-number"><?= $reqnb;?></span>
             <span class="status-type">In Progress</span>
           </div>
           <div class="item-status">
@@ -242,8 +251,7 @@ $heureActuelle = time();
       </div>
       <div class="project-boxes jsGridView">
 <?php 
-require"taskforeach.php";
-
+  require("./taskforeach.php");
 ?>
       </div>
 
