@@ -45,7 +45,7 @@ $heureActuelle = time();
 <style>
 
 .overlay {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
     width: 100%;
@@ -72,14 +72,14 @@ $heureActuelle = time();
 
 .popup {
 	/*margin: 75px auto;*/
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 	padding: 20px;
 	background: #fff;
 	border: 1px solid #666;
-	width: 300px;
+	width: 350px;
 	box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 	position: relative;
 }
@@ -134,6 +134,7 @@ $heureActuelle = time();
         <p>If Task User is null, the task will be assigned to the user who took it</p>
 			  <p>Task Name: <input type="text" name="taskname"></p>
         <p>Task User: <input type="text" name="taskuser"></p>
+        <p>Deadline: <input type="date" name="deadline" style="display: inline;"><input type="time" name="time" style="display: inline;"></p>
         <p>Send Task: <input type="submit" name="sendtask"></p>
       </form>
 		</div>
