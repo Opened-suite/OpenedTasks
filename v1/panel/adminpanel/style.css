@@ -353,4 +353,15 @@
 	 fill: var(--star);
 	 transition: 0.2s;
 }
-
+.modal {
+	display: none;
+	position: absolute;
+	padding: 5px;
+	border: #111827 solid 1px;
+	z-index: 999;
+	border-radius: 50px;
+	background-color: #fff;
+}
+.active {
+	display: block;
+}
