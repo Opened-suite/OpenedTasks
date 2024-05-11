@@ -370,8 +370,7 @@ foreach ($tasks as $task) {
             </div>
             <div class="project-box-footer">
                 <div class="participants">
-                ' 
-                .
+                ';
                     $names = explode(";", $task["task_user"]);
 
                     // Affichage des noms d'utilisateur séparés en utilisant echo
@@ -389,9 +388,7 @@ foreach ($tasks as $task) {
                         
                     
                     }
-
-                    
-                    '
+                    echo '
                     <button class="add-participant" style="color: #ff942e;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
                             <path d="M12 5v14M5 12h14" />
@@ -403,8 +400,6 @@ foreach ($tasks as $task) {
                 </div>
             </div>
         </div>
-    </div>
-
     </div>';    
     }
 } catch(Exception $e) {
