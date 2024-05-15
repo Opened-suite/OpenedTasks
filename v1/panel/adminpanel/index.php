@@ -372,21 +372,14 @@ foreach ($tasks as $task) {
                 <div class="participants">
                 ';
                     $names = explode(";", $task["task_user"]);
-
                     // Affichage des noms d'utilisateur séparés en utilisant echo
-                    
                     foreach ($names as $username) {
-                        
                             if (is_string($username)) {
                                 echo $username . '<br>';
                             } else {
                                 echo "Element non valide : ";
                                 var_dump($username);
                             }
-                        
-                        
-                        
-                    
                     }
                     echo '
                     <button class="add-participant" style="color: #ff942e;">
