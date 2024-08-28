@@ -2,6 +2,7 @@
 session_start();
 try {
     $pseudo = $_SESSION['pseudo'];
+    $table = htmlspecialchars($_POST['table']);
 
 
     $servername = "localhost";
