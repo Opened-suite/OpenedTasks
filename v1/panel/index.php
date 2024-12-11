@@ -32,7 +32,7 @@ if(!isset($_SESSION['pseudo'])){
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
                     <li><a href="#">My Account</a></li>
-                    <li><a href="#">Information</a></li>
+                    <li><a href="#">Calendar</a></li>
                     <li><a href="tasks/index.php">Tasks</a></li>
                     <?php if ($role == "Admin") {
                         echo '<li><a href="adminpanel/index.php">Admin PANEL</a></li>';
